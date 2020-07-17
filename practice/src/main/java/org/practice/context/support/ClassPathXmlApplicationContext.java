@@ -1,7 +1,7 @@
 package org.practice.context.support;
 
 import org.practice.core.io.Resource;
-import org.practice.core.io.XmlClassPathResource;
+import org.practice.core.io.ClassPathResource;
 
 /**
  * @author yeyulin
@@ -15,7 +15,7 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
 
     @Override
     protected Resource getResourceByPath(String path) {
-        return new XmlClassPathResource(path);
+        return new ClassPathResource(path);
     }
 
 

@@ -3,7 +3,7 @@ package org.practice.test.v1;
 import org.junit.Assert;
 import org.junit.Test;
 import org.practice.core.io.Resource;
-import org.practice.core.io.XmlClassPathResource;
+import org.practice.core.io.ClassPathResource;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +16,7 @@ import java.io.InputStream;
 public class ResourceTest {
     @Test
     public void testClassPathResource() throws IOException {
-        Resource r = new XmlClassPathResource("petstore-v1.xml");
+        Resource r = new ClassPathResource("petstore-v1.xml");
         InputStream is = null;
 
         try {

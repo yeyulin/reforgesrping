@@ -22,7 +22,7 @@ public abstract class AbstractApplicationContext implements ApplicationContext {
         reader.loadBeanDefinitions(resource);
 
     }
-
+    @Override
     public Object getBean(String beanId) {
         return factory.getBean(beanId);
     }

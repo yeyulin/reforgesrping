@@ -1,14 +1,27 @@
 package org.practice.test.v1;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.practice.beans.BeanDefinition;
 import org.practice.beans.factory.support.DefaultBeanFactory;
 import org.practice.beans.factory.xml.XmlBeanDefinitionReader;
-import org.practice.core.io.XmlClassPathResource;
+import org.practice.core.io.ClassPathResource;
 import org.practice.service.v1.PetStoreService;
 
+import static org.junit.Assert.*;
+
 public class BeanFactoryTest {
+    DefaultBeanFactory factory = null;
+    XmlBeanDefinitionReader reader = null;
+
+    @Before
+    public void setUp() {
+        factory = new DefaultBeanFactory();
+        reader = new XmlBeanDefinitionReader(factory);
+
+    }
+
     @Test
     public void testGetBean() {
 
@@ -17,7 +30,7 @@ public class BeanFactoryTest {
         String petStore = "petStore";
         DefaultBeanFactory factory = new DefaultBeanFactory();
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);
-        reader.loadBeanDefinitions(new XmlClassPathResource("petstore-v1.xml"));
+        reader.loadBeanDefinitions(new ClassPathResource("petstore-v1.xml"));
 
         //通过Bean id得到Bean的基本定义
         BeanDefinition beanDefinition = factory.getBeanDefinition(petStore);
@@ -27,6 +40,29 @@ public class BeanFactoryTest {
         PetStoreService petStoreService = (PetStoreService) factory.getBean(petStore);
         Assert.assertNotNull(petStoreService);
 
+    }
 
+    /**
+     * 测试用例和空的类实现
+     * 实现了根据xml文件的beanID生成相应实例的方法
+     */
+    @Test
+    public void testGetBean2() {
+        reader.loadBeanDefinitions(new ClassPathResource("petstore-v1.xml"));
+        BeanDefinition bd = factory.getBeanDefinition("petStore");
+        //默认是单例
+        assertTrue(bd.isSingleton());
+
+        assertFalse(bd.isPrototype());
+
+        assertEquals(BeanDefinition.SCOPE_DEFAULT, bd.getScope());
+
+        assertEquals("org.practice.service.v1.PetStoreService", bd.getBeanClassName());
+        // 根据beanID获取类的实例
+        PetStoreService petStore = (PetStoreService) factory.getBean("petStore");
+        assertNotNull(petStore);
+        // 判断两次生成的实例是否一样
+        PetStoreService petStore1 = (PetStoreService) factory.getBean("petStore");
+        assertTrue(petStore.equals(petStore1));
     }
 }

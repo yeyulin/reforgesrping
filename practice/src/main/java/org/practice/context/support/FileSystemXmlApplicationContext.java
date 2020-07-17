@@ -1,6 +1,6 @@
 package org.practice.context.support;
 
-import org.practice.core.io.FileClassPathResource;
+import org.practice.core.io.FileSystemResource;
 import org.practice.core.io.Resource;
 
 /**
@@ -17,6 +17,6 @@ public class FileSystemXmlApplicationContext extends AbstractApplicationContext 
 
     @Override
     protected Resource getResourceByPath(String path) {
-        return new FileClassPathResource(path);
+        return new FileSystemResource(path);
     }
 }

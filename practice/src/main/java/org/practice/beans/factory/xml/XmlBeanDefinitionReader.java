@@ -34,7 +34,9 @@ public class XmlBeanDefinitionReader {
                 Element ele = (Element) iter.next();
                 String id = ele.attributeValue("id");
                 String beanClassName = ele.attributeValue("class");
+                String scope = ele.attributeValue("scope");
                 BeanDefinition bd = new GenericBeanDefinition(id, beanClassName);
+                bd.setScope(scope);
                 register.registerBeanDefinition(id, bd);
             }
         } catch (Exception e) {

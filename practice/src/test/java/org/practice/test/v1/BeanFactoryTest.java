@@ -47,22 +47,42 @@ public class BeanFactoryTest {
      * 实现了根据xml文件的beanID生成相应实例的方法
      */
     @Test
-    public void testGetBean2() {
+    public void testGetBeanSingleton() {
         reader.loadBeanDefinitions(new ClassPathResource("petstore-v1.xml"));
-        BeanDefinition bd = factory.getBeanDefinition("petStore");
+        BeanDefinition bd = factory.getBeanDefinition("petStoreSingleton");
         //默认是单例
         assertTrue(bd.isSingleton());
 
         assertFalse(bd.isPrototype());
 
-        assertEquals(BeanDefinition.SCOPE_DEFAULT, bd.getScope());
+        assertEquals(BeanDefinition.SCOPE_SINGLETON, bd.getScope());
 
         assertEquals("org.practice.service.v1.PetStoreService", bd.getBeanClassName());
         // 根据beanID获取类的实例
-        PetStoreService petStore = (PetStoreService) factory.getBean("petStore");
+        PetStoreService petStore = (PetStoreService) factory.getBean("petStoreSingleton");
         assertNotNull(petStore);
         // 判断两次生成的实例是否一样
-        PetStoreService petStore1 = (PetStoreService) factory.getBean("petStore");
+        PetStoreService petStore1 = (PetStoreService) factory.getBean("petStoreSingleton");
         assertTrue(petStore.equals(petStore1));
+    }
+
+    @Test
+    public void testGetBeanPrototype() {
+        reader.loadBeanDefinitions(new ClassPathResource("petstore-v1.xml"));
+        BeanDefinition bd = factory.getBeanDefinition("petStorePrototype");
+
+
+        assertFalse(bd.isSingleton());
+        assertTrue(bd.isPrototype());
+
+        assertEquals(BeanDefinition.SCOPE_PROTOTYPE, bd.getScope());
+
+        assertEquals("org.practice.service.v1.PetStoreService", bd.getBeanClassName());
+        // 根据beanID获取类的实例
+        PetStoreService petStore = (PetStoreService) factory.getBean("petStorePrototype");
+        assertNotNull(petStore);
+        // 判断两次生成的实例是否一样
+        PetStoreService petStore1 = (PetStoreService) factory.getBean("petStorePrototype");
+        assertNotEquals(petStore, petStore1);
     }
 }

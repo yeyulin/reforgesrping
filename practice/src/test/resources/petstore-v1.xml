@@ -4,11 +4,17 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean id="petStore"
-        class="org.practice.service.v1.PetStoreService" >
-  </bean>
- <bean id="invalidBean"
-        class="xxx.xxxxx" >
-  </bean>
+    <bean id="petStore"
+          class="org.practice.service.v1.PetStoreService">
+    </bean>
+    <bean id="petStoreSingleton"
+          class="org.practice.service.v1.PetStoreService" scope="singleton">
+    </bean>
+    <bean id="petStorePrototype"
+          class="org.practice.service.v1.PetStoreService" scope="prototype">
+    </bean>
+    <bean id="invalidBean"
+          class="xxx.xxxxx">
+    </bean>
 </beans>
 

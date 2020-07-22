@@ -1,3 +1,8 @@
 /target/
 /.idea/
 /.settings/
+/practice/target
+/litespring/target
+/litespring/.idea
+/litespring/litespring.iml
+

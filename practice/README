@@ -1,3 +1,4 @@
 0623 新增 bean ,definition
 0623 新增 xmlConfig
-0628 新增 resource ,application prototype 待完成
+0628 新增 resource ,application prototype
+0722 新增 PropertyValue，RuntimeBeanReference，BeanDefinitionValueResolver的抽象 待完成

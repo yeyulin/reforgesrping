@@ -1,6 +1,9 @@
 package org.practice.beans.factory.support;
 
 import org.practice.beans.BeanDefinition;
+import org.practice.beans.PropertyValue;
+
+import java.util.List;
 
 /**
  * @author yeyulin
@@ -49,6 +52,10 @@ public class GenericBeanDefinition implements BeanDefinition {
     @Override
     public String getBeanName() {
         return this.beanName;
+    }
+
+    public List<PropertyValue> getPropertyValues() {
+        return null;
     }
 
     public void setBeanName(String beanName) {

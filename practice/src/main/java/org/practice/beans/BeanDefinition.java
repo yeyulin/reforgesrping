@@ -1,5 +1,7 @@
 package org.practice.beans;
 
+import java.util.List;
+
 public interface BeanDefinition {
     String SCOPE_SINGLETON = "singleton";
     String SCOPE_PROTOTYPE = "prototype";
@@ -11,7 +13,7 @@ public interface BeanDefinition {
      *
      * @see #SCOPE_SINGLETON
      */
-     boolean isSingleton();
+    boolean isSingleton();
 
     /**
      * Return whether this a <b>Prototype</b>, with an independent instance
@@ -19,16 +21,18 @@ public interface BeanDefinition {
      *
      * @see #SCOPE_PROTOTYPE
      */
-     boolean isPrototype();
+    boolean isPrototype();
 
     /**
      * getScope
+     *
      * @return
      */
     String getScope();
 
     /**
      * setScope
+     *
      * @param scope
      */
     void setScope(String scope);
@@ -42,8 +46,15 @@ public interface BeanDefinition {
 
     /**
      * getBeanName
+     *
      * @return
      */
     String getBeanName();
+
+    /**
+     * 得到Bean的附带属性
+     * @return
+     */
+    List<PropertyValue> getPropertyValues();
 
 }

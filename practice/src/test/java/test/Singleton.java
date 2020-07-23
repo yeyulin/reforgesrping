@@ -7,8 +7,8 @@ package test;
  **/
 public class Singleton {
     private static Singleton instance; // 不加volatile
-
-    private volatile boolean flag = false; // 一个flag来标识初始化是否完成
+    //在1.8后 不需要再加 volatile
+    private boolean flag = false; // 一个flag来标识初始化是否完成
 
     private Singleton() {
         try {
@@ -35,5 +35,6 @@ public class Singleton {
         }
         return instance;
     }
+
 
 }

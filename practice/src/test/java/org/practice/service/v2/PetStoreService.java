@@ -18,5 +18,5 @@ public class PetStoreService {
     private AccountDao accountDao;
     private ItemDao itemDao;
     private String owner;
-    private Integer version;
+    private int version;
 }

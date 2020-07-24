@@ -1,5 +1,6 @@
 package org.practice.test;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.practice.test.v1.AllTestV1;
@@ -12,4 +13,6 @@ import org.practice.test.v1.AllTestV1;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({AllTestV1.class})
 public class AllTest {
+
+
 }

@@ -7,5 +7,10 @@ package org.practice.context;
  * @since soc2.2
  **/
 public interface ApplicationContext {
+    /**
+     * 通过BeanID得到
+     * @param beanId
+     * @return
+     */
     Object getBean(String beanId);
 }

@@ -54,6 +54,7 @@ public class GenericBeanDefinition implements BeanDefinition {
         return this.beanName;
     }
 
+    @Override
     public List<PropertyValue> getPropertyValues() {
         return null;
     }

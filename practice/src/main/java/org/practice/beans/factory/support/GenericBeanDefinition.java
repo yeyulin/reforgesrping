@@ -3,6 +3,7 @@ package org.practice.beans.factory.support;
 import org.practice.beans.BeanDefinition;
 import org.practice.beans.PropertyValue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,7 @@ public class GenericBeanDefinition implements BeanDefinition {
     private boolean singleton = true;
     private boolean prototype = false;
     private String scope = SCOPE_DEFAULT;
+    List<PropertyValue> propertyValues = new ArrayList<PropertyValue>();
 
     public GenericBeanDefinition(String beanName, String beanClassName) {
         this.beanName = beanName;
@@ -56,7 +58,7 @@ public class GenericBeanDefinition implements BeanDefinition {
 
     @Override
     public List<PropertyValue> getPropertyValues() {
-        return null;
+        return propertyValues;
     }
 
     public void setBeanName(String beanName) {

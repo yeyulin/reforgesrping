@@ -6,8 +6,10 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.practice.beans.BeanDefinition;
+import org.practice.beans.PropertyValue;
 import org.practice.beans.factory.BeanDefinitionStoreException;
 import org.practice.beans.factory.config.RuntimeBeanReference;
+import org.practice.beans.factory.config.TypedStringValue;
 import org.practice.beans.factory.support.BeanDefinitionRegister;
 import org.practice.beans.factory.support.GenericBeanDefinition;
 import org.practice.core.io.Resource;
@@ -48,12 +50,9 @@ public class XmlBeanDefinitionReader {
                 String beanClassName = ele.attributeValue(CLASS_ATTRIBUTE);
                 String scope = ele.attributeValue(SCOPE_ATTRIBUTE);
                 BeanDefinition bd = new GenericBeanDefinition(id, beanClassName);
-
                 //设置 scope
                 bd.setScope(scope);
                 parsePropertyElement(ele, bd);
-
-
                 register.registerBeanDefinition(id, bd);
             }
         } catch (Exception e) {
@@ -85,16 +84,29 @@ public class XmlBeanDefinitionReader {
                 logger.fatal("Tag 'property' must have a 'name' attribute");
                 return;
             }
-
+            Object val = parsePropertyValue(propElem, bd, propertyName);
+            PropertyValue pv = new PropertyValue(propertyName, val);
+            bd.getPropertyValues().add(pv);
         }
+
+    }
+
+    private Object parsePropertyValue(Element ele, BeanDefinition bd, String propertyName) {
+        String elementName = (propertyName != null) ?
+                "<property> element for property '" + propertyName + "'" :
+                "<constructor-arg> element";
         boolean hasRefAttribute = (ele.attribute(REF_ATTRIBUTE) != null);
         boolean hasValueAttribute = (ele.attribute(VALUE_ATTRIBUTE) != null);
         if (hasRefAttribute) {
             String refName = ele.attributeValue(REF_ATTRIBUTE);
             if (!StringUtils.hasText(refName)) {
-                //  logger.error(elementName + " contains empty 'ref' attribute");
+                logger.error(elementName + " contains empty 'ref' attribute");
             }
-            RuntimeBeanReference ref = new RuntimeBeanReference(refName);
+            return new RuntimeBeanReference(refName);
+        } else if (hasValueAttribute) {
+            return new TypedStringValue(ele.attributeValue(VALUE_ATTRIBUTE));
         }
+        throw new RuntimeException(elementName + " must specify a ref or value");
+
     }
 }

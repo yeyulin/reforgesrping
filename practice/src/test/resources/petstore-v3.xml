@@ -5,16 +5,17 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="petStore"
-          class="org.practice.service.v1.PetStoreService">
+          class="org.practice.service.v3.PetStoreService" >
+        <constructor-arg  ref="accountDao"/>
+        <constructor-arg  ref="itemDao"/>
+        <constructor-arg  value="1"/>
     </bean>
-    <bean id="petStoreSingleton"
-          class="org.practice.service.v1.PetStoreService" scope="singleton">
-    </bean>
-    <bean id="petStorePrototype"
-          class="org.practice.service.v1.PetStoreService" scope="prototype">
-    </bean>
-    <bean id="invalidBean"
-          class="xxx.xxxxx">
-    </bean>
-</beans>
 
+    <bean id="itemDao" class="org.litespring.dao.v3.ItemDao">
+
+    </bean>
+    <bean id="accountDao"  class="org.litespring.dao.v3.AccountDao">
+
+    </bean>
+
+</beans>

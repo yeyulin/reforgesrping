@@ -57,4 +57,10 @@ public interface BeanDefinition {
      */
     List<PropertyValue> getPropertyValues();
 
+    /**
+     * 得到构造器
+     * @return
+     */
+    ConstructorArgument getConstructorArgument();
+
 }

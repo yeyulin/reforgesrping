@@ -12,7 +12,7 @@ import org.practice.test.v2.AllTestV2;
  * @date 2020/7/17 16:25
  **/
 @RunWith(Suite.class)
-@Suite.SuiteClasses({AllTestV1.class, AllTestV2.class})
+@Suite.SuiteClasses({AllTestV1.class, AllTestV2.class,})
 public class AllTest {
 
 

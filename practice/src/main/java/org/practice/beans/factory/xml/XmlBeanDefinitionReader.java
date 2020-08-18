@@ -118,6 +118,7 @@ public class XmlBeanDefinitionReader {
 
     }
 
+
     private Object parsePropertyValue(Element ele, String propertyName) {
         String elementName = (propertyName != null) ?
                 "<property> element for property '" + propertyName + "'" :

@@ -5,7 +5,7 @@ import org.practice.beans.factory.config.TypedStringValue;
 
 /**
  * @author yeyulin
- * @description: 用于把beanID生成相应的实例
+ * @description: 用于把beanID生成相应的实例 封装
  * @date 2020/7/22 11:25
  **/
 public class BeanDefinitionValueResolver {

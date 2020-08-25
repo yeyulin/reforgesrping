@@ -1,6 +1,7 @@
 package org.practice.beans.factory.support;
 
 import org.practice.beans.BeanDefinition;
+import org.practice.beans.ConstructorResolver;
 import org.practice.beans.PropertyValue;
 import org.practice.beans.SimpleTypeConverter;
 import org.practice.beans.factory.BeanCreationException;
@@ -106,6 +107,10 @@ public class DefaultBeanFactory extends AbstractBeanFactory implements BeanDefin
      * @return
      */
     private Object instantiateBean(BeanDefinition bd) {
+        if(bd.hasConstructorArgumentValues()){
+            ConstructorResolver resolver = new ConstructorResolver(this);
+            return resolver.autowireConstructor(bd);
+        }
         String beanClassName = bd.getBeanClassName();
         ClassLoader classLoader = this.getClassLoader();
         try {

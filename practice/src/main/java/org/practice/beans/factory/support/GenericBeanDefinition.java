@@ -68,6 +68,12 @@ public class GenericBeanDefinition implements BeanDefinition {
         return this.constructorArgument;
     }
 
+    @Override
+    public boolean hasConstructorArgumentValues() {
+        return !this.constructorArgument.isEmpty();
+
+    }
+
     public void setBeanName(String beanName) {
         this.beanName = beanName;
     }

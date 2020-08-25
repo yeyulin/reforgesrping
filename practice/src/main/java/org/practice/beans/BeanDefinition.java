@@ -63,4 +63,11 @@ public interface BeanDefinition {
      */
     ConstructorArgument getConstructorArgument();
 
+    /**
+     * 是否有构造器
+     * @return
+     */
+    boolean hasConstructorArgumentValues();
+
+
 }

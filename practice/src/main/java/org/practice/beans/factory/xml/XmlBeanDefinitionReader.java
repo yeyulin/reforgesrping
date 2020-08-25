@@ -82,6 +82,11 @@ public class XmlBeanDefinitionReader {
         }
     }
 
+    /**
+     * 解析构造函数
+     * @param ele
+     * @param bd
+     */
     private void parseConstructorArgElement(Element ele, BeanDefinition bd) {
         String typeAttr = ele.attributeValue(TYPE_ATTRIBUTE);
         String nameAttr = ele.attributeValue(NAME_ATTRIBUTE);
@@ -137,4 +142,6 @@ public class XmlBeanDefinitionReader {
         throw new RuntimeException(elementName + " must specify a ref or value");
 
     }
+
+
 }

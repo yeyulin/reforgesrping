@@ -1,8 +1,8 @@
 package org.practice.service.v3;
 
 import lombok.*;
-import org.practice.dao.v2.AccountDao;
-import org.practice.dao.v2.ItemDao;
+import org.practice.dao.v3.AccountDao;
+import org.practice.dao.v3.ItemDao;
 
 /**
  * @author yeyulin

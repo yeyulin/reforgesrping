@@ -11,10 +11,10 @@
         <constructor-arg  value="1"/>
     </bean>
 
-    <bean id="itemDao" class="org.litespring.dao.v3.ItemDao">
+    <bean id="itemDao" class="org.practice.dao.v3.ItemDao">
 
     </bean>
-    <bean id="accountDao"  class="org.litespring.dao.v3.AccountDao">
+    <bean id="accountDao"  class="org.practice.dao.v3.AccountDao">
 
     </bean>
 
